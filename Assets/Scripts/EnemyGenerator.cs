@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyGenerator : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    float span = 0.3f;
+    public float span = 0.3f;
     float delta = 0.0f;
 
     // Start is called before the first frame update
@@ -21,10 +21,10 @@ public class EnemyGenerator : MonoBehaviour
         if (this.delta > this.span)
         {
             this.delta = 0;
-            GameObject arrow = Instantiate(enemyPrefab);
-            int px = Random.Range(-6, 7);
-            arrow.transform.position = new Vector3(px, 7, 0);
-
+            GameObject enemy = Instantiate(enemyPrefab);
+            int px = (Random.Range(0, 4) - 2) * 2;            
+            enemy.transform.position = new Vector3(8, px, 0);
+            enemy.transform.rotation = new Quaternion(0, 1, 0, -1);
         }
 
     }
