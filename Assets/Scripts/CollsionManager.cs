@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollsionManager : MonoBehaviour
 {
     public TagManager tagManager;
+    public DeadManager deadManager;
     public int Life = 1;
     public bool IsRandom = false;
 
