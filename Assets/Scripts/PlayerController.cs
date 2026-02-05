@@ -1,26 +1,30 @@
 //using UnityEngine;
 
+//[RequireComponent(typeof(Rigidbody))]
 //public class PlayerController : MonoBehaviour
 //{
-//    public float moveSpeed = 5f; // 移動速度
+//    public float moveSpeed = 5f;
+//    private Rigidbody rb;
 
-//    void Update()
+//    void Start()
 //    {
-//        // 入力を取得
-//        float horizontal = Input.GetAxis("Horizontal"); // A, D キー
-//        float vertical = Input.GetAxis("Vertical");     // W, S キー
+//        rb = GetComponent<Rigidbody>();
+//    }
 
-//        // 移動方向を作成
-//        Vector3 direction = new Vector3(horizontal, 0, vertical);
+//    void FixedUpdate()
+//    {
+//        float vertical = Input.GetAxis("Vertical"); // W：上昇、S：下降
+//        Vector3 move = new Vector3(0, vertical, 0) * moveSpeed * Time.fixedDeltaTime;
 
-//        // 移動処理
-//        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+//        Vector3 targetPosition = rb.position + move;
 
-//        // 向きを進行方向に回転させる（オプション）
-//        if (direction != Vector3.zero)
+//        //  Y=0以下には移動しない
+//        if (targetPosition.y < 0f)
 //        {
-//            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.2f);
+//            targetPosition.y = 0f;
 //        }
+
+//        rb.MovePosition(targetPosition);
 //    }
 //}
 
@@ -30,7 +34,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float acceleration = 5f;
     private Rigidbody rb;
+    private float verticalVelocity = 0f;
 
     void Start()
     {
@@ -39,15 +45,19 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float vertical = Input.GetAxis("Vertical"); // W：上昇、S：下降
-        Vector3 move = new Vector3(0, vertical, 0) * moveSpeed * Time.fixedDeltaTime;
+        float input = Input.GetAxis("Vertical"); // W: +1, S: -1
 
+        // 徐々に入力方向に近づける（滑らかに加減速）
+        verticalVelocity = Mathf.Lerp(verticalVelocity, input * moveSpeed, Time.fixedDeltaTime * acceleration);
+
+        Vector3 move = new Vector3(0, verticalVelocity, 0) * Time.fixedDeltaTime;
         Vector3 targetPosition = rb.position + move;
 
-        //  Y=0以下には移動しない
+        // Y=0以下に行かないよう制限
         if (targetPosition.y < 0f)
         {
             targetPosition.y = 0f;
+            verticalVelocity = 0f; // 接地時は速度もゼロにする
         }
 
         rb.MovePosition(targetPosition);
