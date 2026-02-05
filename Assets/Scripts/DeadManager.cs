@@ -19,18 +19,6 @@ public class DeadManager : MonoBehaviour
         DEADOBJECT_MAX
     };
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // €–SŠÖ”‚ÌŒÄ‚Ño‚µ
     public void SetDeadObject(DEADOBJECT objectType)
     {
@@ -46,6 +34,7 @@ public class DeadManager : MonoBehaviour
                 enemy.SetDeadEnemy();
                 break;
 
+            // ƒ{ƒX‚Ì€–Sˆ—
             case DEADOBJECT.DEADOBJECT_BOSS:
                 boss.SetDeadBoss();
                 break;
