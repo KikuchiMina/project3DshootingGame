@@ -7,12 +7,14 @@ public class DeadManager : MonoBehaviour
 {
     public DeadPlayerController player;     // プレイヤー
     public DeadEnemyController enemy;       // 敵
+    public DeadBossController boss;         // ボス
     public DeadBulletController bullet;     // 弾
 
     public enum DEADOBJECT
     {
         DEADOBJECT_PLAYER = 0,      // プレイヤーの死亡演出
         DEADOBJECT_ENEMY,           // 敵の死亡演出
+        DEADOBJECT_BOSS,            // ボスの死亡演出
         DEADOBJECT_BULLET,          // 弾の死亡演出
         DEADOBJECT_MAX
     };
@@ -42,6 +44,10 @@ public class DeadManager : MonoBehaviour
             // エネミーの死亡時処理
             case DEADOBJECT.DEADOBJECT_ENEMY:
                 enemy.SetDeadEnemy();
+                break;
+
+            case DEADOBJECT.DEADOBJECT_BOSS:
+                boss.SetDeadBoss();
                 break;
 
             // 弾の死亡時処理
