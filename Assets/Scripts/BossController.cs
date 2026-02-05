@@ -10,11 +10,6 @@ public class BossController : MonoBehaviour
     float MoveForce;
     public float fAttackSpan = 1200;
     float fResetAttackSpan = 0;
-    int BossHP = 50;
-    int nCounterHit = 0;
-    int nCounterAttackMotion = 600;
-
-    private int MotionType = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -33,45 +28,19 @@ public class BossController : MonoBehaviour
             this.animator.SetTrigger("FlyingFWD");
         }
 
-        fAttackSpan--;
-
         if (fAttackSpan <= 0)
         {// 攻撃スパンカウンターが0以下になった時
-
-            Debug.Log("Attack");
+            //Debug.Log("Attack");
 
             // 攻撃モーションを再生
             this.animator.SetTrigger("Drakaris");
-
             fAttackSpan = fResetAttackSpan;   // 攻撃スパンカウンターをリセット
-
-            MotionType = 0; // モーションタイプを切り替え待機状態に
         }
-
-        //if (MotionType == 0)
-        //{
-        //    nCounterAttackMotion--;
-
-        //    if (nCounterAttackMotion <= 0)
-        //    {
-        //        MotionType = 1; // モーションタイプを飛行状態に
-        //        nCounterAttackMotion = 600; // 攻撃モーション中のカウンター
-
-        //    }
-        //}
-
-        if (nCounterHit >= BossHP)
-        {// 弾が当たった回数がHP以上になったら  
-
-        }
-
-    }
-
-    void OnTriggerEnterEnter(Collider collision)
-    {
-        if (collision.name == bullet.name)
+        else
         {
-            nCounterHit++;
+            fAttackSpan--;
         }
+
+        Debug.Log(fAttackSpan);
     }
 }
