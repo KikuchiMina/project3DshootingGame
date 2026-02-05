@@ -15,4 +15,10 @@ public class DeadBulletController : MonoBehaviour
     {
         
     }
+
+    // ’e‚Ì€–Sˆ—
+    public void SetDeadBullet()
+    { // ‚±‚±‚É’e‚Ì€–Sˆ—‚ğ‘‚­
+
+    }
 }

@@ -32,6 +32,27 @@ public class DeadManager : MonoBehaviour
     // 死亡時関数の呼び出し
     public void SetDeadObject(DEADOBJECT objectType)
     {
+        switch(objectType)
+        {
+            // プレイヤーの死亡時処理
+            case DEADOBJECT.DEADOBJECT_PLAYER:
+                player.SetDeadPlayer();
+                break;
 
+            // エネミーの死亡時処理
+            case DEADOBJECT.DEADOBJECT_ENEMY:
+                enemy.SetDeadEnemy();
+                break;
+
+            // 弾の死亡時処理
+            case DEADOBJECT.DEADOBJECT_BULLET:
+                bullet.SetDeadBullet();
+                break;
+
+            // 例外処理
+            default:
+                Debug.Log("そんな死亡時処理は無いですよ！");
+                break;
+        }
     }
 }

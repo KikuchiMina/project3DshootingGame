@@ -15,4 +15,10 @@ public class DeadPlayerController : MonoBehaviour
     {
         
     }
+
+    // プレイヤーの死亡時処理
+    public void SetDeadPlayer()
+    { // ここにプレイヤーの死亡時処理を書く
+
+    }
 }
