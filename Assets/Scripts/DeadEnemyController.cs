@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadController : MonoBehaviour
+public class DeadEnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,11 @@ public class DeadController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    // ƒGƒlƒ~[‚Ì€–Sˆ—
+    public void SetDeadEnemy()
+    { // ‚±‚±‚É“G€–Sˆ—‚ğ‘‚­
+
     }
 }
