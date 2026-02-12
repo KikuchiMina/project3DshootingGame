@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HitManager : MonoBehaviour
 {
+    public GameObject target;
     public HitPlayer player;     // プレイヤー
     public HitEnemy enemy;       // 敵
     public HitBoss boss;         // ボス
@@ -19,12 +20,15 @@ public class HitManager : MonoBehaviour
     };
 
     // 死亡時関数の呼び出し
-    public void SetHitObject(HITOBJECT objectType)
+    public void SetHitObject(HITOBJECT objectType, string targetname)
     {
+        target = GameObject.Find(targetname);
+
         switch (objectType)
         {
             // プレイヤーの死亡時処理
             case HITOBJECT.HITOBJECT_PLAYER:
+                player = target.GetComponent<HitPlayer>();
                 if (player != null)
                 {
                     player.SetHitPlayer();
@@ -33,6 +37,8 @@ public class HitManager : MonoBehaviour
 
             // エネミーの死亡時処理
             case HITOBJECT.HITOBJECT_ENEMY:
+                enemy = target.GetComponent<HitEnemy>();
+
                 if (enemy != null)
                 {
                     enemy.SetHitEnemy();
@@ -41,6 +47,8 @@ public class HitManager : MonoBehaviour
 
             // ボスの死亡時処理
             case HITOBJECT.HITOBJECT_BOSS:
+                boss = target.GetComponent<HitBoss>();
+
                 if (boss != null)
                 {
                     boss.SetHitBoss();
@@ -49,6 +57,8 @@ public class HitManager : MonoBehaviour
 
             // 弾の死亡時処理
             case HITOBJECT.HITOBJECT_BULLET:
+                bullet = target.GetComponent<HitBullet>();
+
                 if (bullet != null)
                 {
                     bullet.SetHitBullet();

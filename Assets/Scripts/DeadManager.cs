@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DeadManager : MonoBehaviour
 {
+    public GameObject target;
     public DeadPlayerController player;     // プレイヤー
     public DeadEnemyController enemy;       // 敵
     public DeadBossController boss;         // ボス
@@ -20,12 +21,16 @@ public class DeadManager : MonoBehaviour
     };
 
     // 死亡時関数の呼び出し
-    public void SetDeadObject(DEADOBJECT objectType)
+    public void SetDeadObject(DEADOBJECT objectType, string targetname)
     {
-        switch(objectType)
+        target = GameObject.Find(targetname);
+
+        switch (objectType)
         {
             // プレイヤーの死亡時処理
             case DEADOBJECT.DEADOBJECT_PLAYER:
+                player = target.GetComponent<DeadPlayerController>();
+
                 if (player != null)
                 {
                     player.SetDeadPlayer();
@@ -34,6 +39,8 @@ public class DeadManager : MonoBehaviour
 
             // エネミーの死亡時処理
             case DEADOBJECT.DEADOBJECT_ENEMY:
+                enemy = target.GetComponent<DeadEnemyController>();
+
                 if (enemy != null)
                 {
                     enemy.SetDeadEnemy();
@@ -42,6 +49,8 @@ public class DeadManager : MonoBehaviour
 
             // ボスの死亡時処理
             case DEADOBJECT.DEADOBJECT_BOSS:
+                boss = target.GetComponent<DeadBossController>();
+
                 if (boss != null)
                 {
                     boss.SetDeadBoss();
@@ -50,8 +59,11 @@ public class DeadManager : MonoBehaviour
 
             // 弾の死亡時処理
             case DEADOBJECT.DEADOBJECT_BULLET:
+                bullet = target.GetComponent<DeadBulletController>();
+
                 if (bullet != null)
                 {
+                    Debug.Log(target);
                     bullet.SetDeadBullet();
                 }
                 break;
