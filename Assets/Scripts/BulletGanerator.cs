@@ -15,7 +15,7 @@ public class BulletGanerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && GameObject.Find("Red") != null)
         {
             GameObject tagM = GameObject.Find("TagManager");
             GameObject deadM = GameObject.Find("DeadManager");

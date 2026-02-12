@@ -402,7 +402,7 @@ MonoBehaviour:
   PanelImage: {fileID: 0}
   fadeDuration: 1
   IsCanFade: 1
-  IsReturnFade: 1
+  IsReturnFade: 0
 --- !u!4 &692735886
 Transform:
   m_ObjectHideFlags: 0
