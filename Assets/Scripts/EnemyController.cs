@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         Vector3 p1 = transform.position;
-        if(p1.y < 0)
+        if (p1.y < 0)
         {
             spin *= -1;
         }
@@ -39,5 +39,14 @@ public class EnemyController : MonoBehaviour
         if (transform.position.x < -50)
             Destroy(gameObject);//”jŠü
 
+    }
+
+    // ‹¤—LŽ®“–‚½‚è”»’è
+    private void OnTriggerEnter(Collider other)
+    {
+        if(string.Equals(other.tag, "Bullet"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
