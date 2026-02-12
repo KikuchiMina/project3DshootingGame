@@ -26,22 +26,34 @@ public class DeadManager : MonoBehaviour
         {
             // プレイヤーの死亡時処理
             case DEADOBJECT.DEADOBJECT_PLAYER:
-                player.SetDeadPlayer();
+                if (player != null)
+                {
+                    player.SetDeadPlayer();
+                }
                 break;
 
             // エネミーの死亡時処理
             case DEADOBJECT.DEADOBJECT_ENEMY:
-                enemy.SetDeadEnemy();
+                if (enemy != null)
+                {
+                    enemy.SetDeadEnemy();
+                }
                 break;
 
             // ボスの死亡時処理
             case DEADOBJECT.DEADOBJECT_BOSS:
-                boss.SetDeadBoss();
+                if (boss != null)
+                {
+                    boss.SetDeadBoss();
+                }
                 break;
 
             // 弾の死亡時処理
             case DEADOBJECT.DEADOBJECT_BULLET:
-                bullet.SetDeadBullet();
+                if (bullet != null)
+                {
+                    bullet.SetDeadBullet();
+                }
                 break;
 
             // 例外処理

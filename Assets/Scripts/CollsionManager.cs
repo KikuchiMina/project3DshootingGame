@@ -6,6 +6,7 @@ public class CollsionManager : MonoBehaviour
 {
     public TagManager tagManager;
     public DeadManager deadManager;
+    public HitManager hitManager;
     public int Life = 1;
 
     // Start is called before the first frame update
@@ -55,7 +56,13 @@ public class CollsionManager : MonoBehaviour
                 Debug.Log(this.Life);
                 if (this.Life <= 0)
                 { // 0ˆÈ‰º‚É‚È‚Á‚½‚çŽ€–SŽžˆ—
+                    Debug.Log("Dead");
                     deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_PLAYER);
+                }
+                else
+                {
+                    Debug.Log("Hit");
+                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_PLAYER);
                 }
             }
         }
@@ -69,7 +76,13 @@ public class CollsionManager : MonoBehaviour
                 Debug.Log(this.Life);
                 if (this.Life <= 0)
                 { // 0ˆÈ‰º‚É‚È‚Á‚½‚çŽ€–SŽžˆ—
+                    Debug.Log("Dead");
                     deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_ENEMY);
+                }
+                else
+                {
+                    Debug.Log("Hit");
+                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_ENEMY);
                 }
             }
         }
@@ -82,7 +95,13 @@ public class CollsionManager : MonoBehaviour
                 Debug.Log(this.Life);
                 if (this.Life <= 0)
                 { // 0ˆÈ‰º‚É‚È‚Á‚½‚çŽ€–SŽžˆ—
+                    Debug.Log("Dead");
                     deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_BOSS);
+                }
+                else
+                {
+                    Debug.Log("Hit");
+                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_BOSS);
                 }
             }
         }
@@ -96,7 +115,13 @@ public class CollsionManager : MonoBehaviour
                 Debug.Log(this.Life);
                 if (this.Life <= 0)
                 { // 0ˆÈ‰º‚É‚È‚Á‚½‚çŽ€–SŽžˆ—
+                    Debug.Log("Dead");
                     deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_BULLET);
+                }
+                else
+                {
+                    Debug.Log("Hit");
+                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_BULLET);
                 }
             }
         }
