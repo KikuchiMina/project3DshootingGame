@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    GameObject player;
-
     // Start is called before the first frame update
     void Start()
     {
-        this.player = GameObject.Find("player");//ヒエラルキーの"player"を検索し取得
 
     }
 
@@ -17,11 +14,10 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         //1Fごとに等速で移動
-        transform.Translate(0, -0.03f, 0);
+        transform.Translate(0.1f, 0, 0);
 
         //画面外に出たらオブジェクトを破棄
-        if (transform.position.x < -50)
+        if (transform.position.x < -70 || 70 < transform.position.x)
             Destroy(gameObject);//破棄
-
     }
 }

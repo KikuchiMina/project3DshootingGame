@@ -35,16 +35,19 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float acceleration = 5f;
+    public float underBorder = 0f;
+    //public float uBorder = 0f;
     private Rigidbody rb;
     private float verticalVelocity = 0f;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
+        //if (Input.GetKeyDown(KeyCode.UpArrow) == false && Input.GetKeyDown(KeyCode.DownArrow) == false) return;
         float input = Input.GetAxis("Vertical"); // W: +1, S: -1
 
         // 徐々に入力方向に近づける（滑らかに加減速）
@@ -54,12 +57,13 @@ public class PlayerController : MonoBehaviour
         Vector3 targetPosition = rb.position + move;
 
         // Y=0以下に行かないよう制限
-        if (targetPosition.y < 0f)
+        if (targetPosition.y < underBorder)
         {
-            targetPosition.y = 0f;
+            targetPosition.y = underBorder;
             verticalVelocity = 0f; // 接地時は速度もゼロにする
         }
 
         rb.MovePosition(targetPosition);
     }
+
 }

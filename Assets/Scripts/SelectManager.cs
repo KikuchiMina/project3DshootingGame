@@ -7,18 +7,26 @@ public class SelectManager : MonoBehaviour
     private Animator animRed = null;
     private Animator animGreen = null;
     private Animator animBlue = null;
-    public GameObject playerRed;       // プレイヤーを格納するための変数
-    public GameObject playerGreen;     // プレイヤーを格納するための変数
-    public GameObject playerBlue;      // プレイヤーを格納するための変数
-    private float horizontalKey = -1;
+    public GameObject Sphere;               // 球体
+    //public GameObject playerRed;            // プレイヤーを格納するための変数
+    //public GameObject playerGreen;
+    //public GameObject playerBlue;
+    //public Animation animationIdleRed;      // アニメーションを格納
+    //public Animation animationIdleGreen;
+    //public Animation animationIdleBlue;
+    //public Animation animationTakeOffRed;
+    //public Animation animationTakeOffGreen;
+    //public Animation animationTakeOffBlue;
+    int SelectPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        //変数animIdleに、Animatorコンポーネントを設定する
-        animRed = playerRed.GetComponent<Animator>();
-        animGreen = playerGreen.GetComponent<Animator>();
-        animBlue = playerBlue.GetComponent<Animator>();
+        ////変数animIdleに、Animatorコンポーネントを設定する
+        //animRed = playerRed.GetComponent<Animator>();
+        //animGreen = playerGreen.GetComponent<Animator>();
+        //animBlue = playerBlue.GetComponent<Animator>();
+        SelectPlayer = 0;
     }
 
     // Update is called once per frame
@@ -27,54 +35,75 @@ public class SelectManager : MonoBehaviour
         // 左に移動
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            horizontalKey--;
+            SelectPlayer--;
 
             // 0未満は0にする
-            if (horizontalKey < 0)
+            if (SelectPlayer < 0)
             {
-                horizontalKey = 0;
+                SelectPlayer = 0;
             }
         }
         // 右に移動
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            horizontalKey++;
+            SelectPlayer++;
 
             // 2以上は2にする
-            if (2 < horizontalKey)
+            if (2 < SelectPlayer)
             {
-                horizontalKey = 2;
+                SelectPlayer = 2;
             }
         }
 
-        switch (horizontalKey)
+        // 現在のポジションを代入
+        Vector3 pos = Sphere.transform.position;
+
+        switch (SelectPlayer)
         {
-            case -1:
-                this.animRed.SetTrigger("Idle01");
-                this.animGreen.SetTrigger("Idle01");
-                this.animBlue.SetTrigger("Idle");
-                break;
             case 0:
-                this.animRed.SetTrigger("Take Off");
-                this.animGreen.SetTrigger("Idle01");
-                this.animBlue.SetTrigger("Idle");
+                pos.x = -10.0f; // x座標変更
                 break;
             case 1:
-                this.animRed.SetTrigger("Idle01");
-                this.animGreen.SetTrigger("Take Off");
-                this.animBlue.SetTrigger("Idle");
+                pos.x = 0.0f; // x座標変更
                 break;
             case 2:
-                this.animRed.SetTrigger("Idle01");
-                this.animGreen.SetTrigger("Idle01");
-                this.animBlue.SetTrigger("Take Off");
+                pos.x = 10.0f;                      // x座標変更
                 break;
         }
 
-        // ENTERが押された場合
+        // 変更後の座標を代入
+        Sphere.transform.position = pos;
+
+        //switch (horizontalKey)
+        //{
+        //    case -1:
+        //        this.animRed.SetTrigger("idle01");
+        //        this.animGreen.SetTrigger("Idle01");
+        //        this.animBlue.SetTrigger("Idle");
+        //        break;
+        //    case 0:
+        //        this.animRed.SetTrigger("Take Off");
+        //        this.animGreen.SetTrigger("Idle01");
+        //        this.animBlue.SetTrigger("Idle");
+        //        break;
+        //    case 1:
+        //        this.animRed.SetTrigger("Idle01");
+        //        this.animGreen.SetTrigger("Take Off");
+        //        this.animBlue.SetTrigger("Idle");
+        //        break;
+        //    case 2:
+        //        this.animRed.SetTrigger("Idle01");
+        //        this.animGreen.SetTrigger("Idle01");
+        //        this.animBlue.SetTrigger("Take Off");
+        //        break;
+        //}
+
+        // 画面遷移(ゲーム画面へ)
         if (Input.GetKeyDown(KeyCode.Return))
-        {
-            // 画面遷移(ゲーム画面へ)
+        {// ENTERが押された場合
+            // SampleKey2 という名前のキーに int 型の値 20 を保存する
+            PlayerPrefs.SetInt("Player", SelectPlayer);
+            PlayerPrefs.Save();
         }
     }
 }
