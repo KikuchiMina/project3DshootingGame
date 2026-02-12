@@ -47,6 +47,15 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            AudioSource source;
+            source = gameObject.GetComponent<AudioSource>();
+            source.PlayOneShot(source.clip);
+        }
+    }
     void FixedUpdate()
     {
         //if (Input.GetKeyDown(KeyCode.UpArrow) == false && Input.GetKeyDown(KeyCode.DownArrow) == false) return;
