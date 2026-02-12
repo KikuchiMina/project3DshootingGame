@@ -17,7 +17,7 @@ public class SelectManager : MonoBehaviour
     //public Animation animationTakeOffRed;
     //public Animation animationTakeOffGreen;
     //public Animation animationTakeOffBlue;
-    int SelectPlayer = 0;
+    int SelectPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +26,7 @@ public class SelectManager : MonoBehaviour
         //animRed = playerRed.GetComponent<Animator>();
         //animGreen = playerGreen.GetComponent<Animator>();
         //animBlue = playerBlue.GetComponent<Animator>();
+        SelectPlayer = 0;
     }
 
     // Update is called once per frame
