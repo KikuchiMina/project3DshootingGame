@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float acceleration = 5f;
     public float underBorder = 0f;
-    //public float uBorder = 0f;
+    public float upperBorder = 0f;
     private Rigidbody rb;
     private float verticalVelocity = 0f;
 
@@ -60,6 +60,13 @@ public class PlayerController : MonoBehaviour
         if (targetPosition.y < underBorder)
         {
             targetPosition.y = underBorder;
+            verticalVelocity = 0f; // 接地時は速度もゼロにする
+        }
+
+        // Y=規定以上に行かないよう制限
+        if (targetPosition.y > upperBorder)
+        {
+            targetPosition.y = upperBorder;
             verticalVelocity = 0f; // 接地時は速度もゼロにする
         }
 

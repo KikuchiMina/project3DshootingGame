@@ -20,4 +20,13 @@ public class BulletController : MonoBehaviour
         if (transform.position.x < -70 || 70 < transform.position.x)
             Destroy(gameObject);//”jŠü
     }
+
+    // ‹¤—LŽ®“–‚½‚è”»’è
+    private void OnTriggerEnter(Collider other)
+    {
+        if (string.Equals(other.tag, "Enemy"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
