@@ -20,15 +20,18 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.animator.SetTrigger("FlyingFWD");
-
+        this.animator.SetBool("FlyingFWD", true);
+    
         this.fFire += Time.deltaTime;
 
         if (this.fSpan < this.fFire)
         {
             this.fFire = 0.0f;
             Debug.Log("aaaa");
-            animator.SetTrigger("Drakaris");
+            animator.SetBool("FlyingFWD", false);
+            animator.SetBool("Drakaris", true);
         }
+        animator.SetBool("Drakaris", false);
+
     }
 }

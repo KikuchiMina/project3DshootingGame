@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d81f6b2a7f13504d8037790fe57188b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: SelectScene
+  sceneName: GameScene
   PanelImage: {fileID: 0}
   fadeDuration: 1
   IsCanFade: 1
