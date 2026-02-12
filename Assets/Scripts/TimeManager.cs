@@ -1,37 +1,35 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Text timeText;    //ŠÔ•\¦—pƒeƒLƒXƒg
-    public float limit = 60.0f;    //§ŒÀŠÔ
-    public GameObject text;    //ƒQ[ƒ€ƒI[ƒo[•\¦—pƒeƒLƒXƒg
-    public GameObject player;    //ƒvƒŒƒCƒ„[Ši”[—p
-    private bool isGameOver = false;    //ƒQ[ƒ€ƒI[ƒo[”»’è
+    public TextMeshProUGUI timeText;    //æ™‚é–“è¡¨ç¤ºç”¨ãƒ†ã‚­ã‚¹ãƒˆ
+    public float limit = 30.0f;    //åˆ¶é™æ™‚é–“
+
+    public SceneController Controller;  // ã“ã“ã§ã‚·ãƒ¼ãƒ³ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã‚’å–å¾—
+    public string DeadEndScene;           // é·ç§»ã™ã‚‹ã‚·ãƒ¼ãƒ³åã‚’æŒ‡å®š
 
     void Start()
     {
-        timeText.text = "Time:" + limit + "•b";
+        timeText.text = "Time:" + limit;
     }
 
     void Update()
     {
-        //ŠÔ§ŒÀ‚ª‚«‚½‚Æ‚«
-        if (limit < 0)
-        {
-            //ƒQ[ƒ€ƒI[ƒo[‚ğ•\¦‚·‚é
-            text.GetComponent<Text>().text = "GameOver...";
-            text.SetActive(true);
-            isGameOver = true;            //ƒQ[ƒ€ƒI[ƒo[
-            return;
-        }
-
-        //ŠÔ‚ğƒJƒEƒ“ƒgƒ_ƒEƒ“‚·‚é
+        //æ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ã™ã‚‹
         limit -= Time.deltaTime;
-        timeText.text = "Time:" + limit.ToString("f1") + "•b";
+        timeText.text = "Time:" + limit.ToString("f1");
+
+        //æ™‚é–“åˆ¶é™ãŒããŸã¨ã
+        if (limit <= 0)
+        {
+            Controller.sceneName = DeadEndScene;Â Â    // é·ç§»ã™ã‚‹ã‚·ãƒ¼ãƒ³åã‚’é©ç”¨
+            Controller.CallCoroutine();Â Â Â Â Â Â Â Â Â Â Â Â Â Â // ã‚·ãƒ¼ãƒ³ã‚’é·ç§»
+        }
     }
 }
