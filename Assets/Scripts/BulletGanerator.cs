@@ -26,10 +26,6 @@ public class BulletGanerator : MonoBehaviour
 
             GameObject bullet = Instantiate(bulletPrefab);
             bullet.transform.position = pos;
-            CollsionManager coll = bullet.GetComponent<CollsionManager>();
-            coll.tagManager = tagM.GetComponent<TagManager>();
-            coll.deadManager = deadM.GetComponent<DeadManager>();
-            coll.hitManager = hitM.GetComponent<HitManager>();
         }
     }
 }

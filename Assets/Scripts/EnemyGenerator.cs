@@ -38,11 +38,6 @@ public class EnemyGenerator : MonoBehaviour
             enemy.transform.position = new Vector3(50, px, 35);
             enemy.transform.rotation = new Quaternion(0, 1, 0, -1);
 
-            CollsionManager coll = enemy.GetComponent<CollsionManager>();
-            coll.tagManager = tagM.GetComponent<TagManager>();
-            coll.deadManager = deadM.GetComponent<DeadManager>();
-            coll.hitManager = hitM.GetComponent<HitManager>();
-
             if (3 < app && (px < -2 || 2 < px))
             {
                 GameObject enemy2 = Instantiate(enemyPrefab);

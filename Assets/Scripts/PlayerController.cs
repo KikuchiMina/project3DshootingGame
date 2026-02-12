@@ -33,10 +33,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    public string DeadEndScene;
     public float moveSpeed = 5f;
     public float acceleration = 5f;
     public float underBorder = 0f;
     public float upperBorder = 0f;
+    public SceneController Controller;
     private Rigidbody rb;
     private float verticalVelocity = 0f;
 
@@ -73,4 +75,17 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(targetPosition);
     }
 
+    // ‹¤—LŽ®“–‚½‚è”»’è
+    private void OnTriggerEnter(Collider other)
+    {
+        if (string.Equals(other.tag, "Enemy"))
+        {
+            Controller.sceneName = DeadEndScene;
+            Debug.Log(Controller.sceneName);
+
+            Controller.CallCoroutine();
+
+            Destroy(gameObject);
+        }
+    }
 }

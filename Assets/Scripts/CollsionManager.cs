@@ -37,6 +37,8 @@ public class CollsionManager : MonoBehaviour
     // 共有式当たり判定
     private void OnTriggerEnter(Collider other)
     {
+        return;
+
         string TagName;             // タグ名
         string TargetName = gameObject.name;
         TagName = gameObject.tag;   // 当たった本人のタグを確認
