@@ -38,6 +38,7 @@ public class CollsionManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         string TagName;             // タグ名
+        string TargetName = gameObject.name;
         TagName = gameObject.tag;   // 当たった本人のタグを確認
 
         // タグの名前を取得
@@ -57,12 +58,12 @@ public class CollsionManager : MonoBehaviour
                 if (this.Life <= 0)
                 { // 0以下になったら死亡時処理
                     Debug.Log("Dead");
-                    deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_PLAYER);
+                    deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_PLAYER, TargetName);
                 }
                 else
                 {
                     Debug.Log("Hit");
-                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_PLAYER);
+                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_PLAYER, TargetName);
                 }
             }
         }
@@ -77,12 +78,12 @@ public class CollsionManager : MonoBehaviour
                 if (this.Life <= 0)
                 { // 0以下になったら死亡時処理
                     Debug.Log("Dead");
-                    deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_ENEMY);
+                    deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_ENEMY, TargetName);
                 }
                 else
                 {
                     Debug.Log("Hit");
-                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_ENEMY);
+                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_ENEMY, TargetName);
                 }
             }
         }
@@ -96,12 +97,12 @@ public class CollsionManager : MonoBehaviour
                 if (this.Life <= 0)
                 { // 0以下になったら死亡時処理
                     Debug.Log("Dead");
-                    deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_BOSS);
+                    deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_BOSS, TargetName);
                 }
                 else
                 {
                     Debug.Log("Hit");
-                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_BOSS);
+                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_BOSS, TargetName);
                 }
             }
         }
@@ -116,12 +117,12 @@ public class CollsionManager : MonoBehaviour
                 if (this.Life <= 0)
                 { // 0以下になったら死亡時処理
                     Debug.Log("Dead");
-                    deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_BULLET);
+                    deadManager.SetDeadObject(DeadManager.DEADOBJECT.DEADOBJECT_BULLET, TargetName);
                 }
                 else
                 {
                     Debug.Log("Hit");
-                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_BULLET);
+                    hitManager.SetHitObject(HitManager.HITOBJECT.HITOBJECT_BULLET, TargetName);
                 }
             }
         }
