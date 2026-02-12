@@ -17,12 +17,19 @@ public class BulletGanerator : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            GameObject tagM = GameObject.Find("TagManager");
+            GameObject deadM = GameObject.Find("DeadManager");
+            GameObject hitM = GameObject.Find("HitManager");
             pos = GameObject.Find("Red").transform.position;//ƒqƒGƒ‰ƒ‹ƒL[‚Ì"player"‚ğŒŸõ‚µæ“¾
             pos.x = pos.x + 5.2f;
             pos.y = pos.y + 1.55f;
 
             GameObject bullet = Instantiate(bulletPrefab);
             bullet.transform.position = pos;
+            CollsionManager coll = bullet.GetComponent<CollsionManager>();
+            coll.tagManager = tagM.GetComponent<TagManager>();
+            coll.deadManager = deadM.GetComponent<DeadManager>();
+            coll.hitManager = hitM.GetComponent<HitManager>();
         }
     }
 }

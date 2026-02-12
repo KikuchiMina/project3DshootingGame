@@ -30,9 +30,18 @@ public class EnemyGenerator : MonoBehaviour
                 this.delta = -0.8f;
             }
 
+            GameObject tagM = GameObject.Find("TagManager");
+            GameObject deadM = GameObject.Find("DeadManager");
+            GameObject hitM = GameObject.Find("HitManager");
+
             GameObject enemy = Instantiate(enemyPrefab);
             enemy.transform.position = new Vector3(50, px, 35);
             enemy.transform.rotation = new Quaternion(0, 1, 0, -1);
+
+            CollsionManager coll = enemy.GetComponent<CollsionManager>();
+            coll.tagManager = tagM.GetComponent<TagManager>();
+            coll.deadManager = deadM.GetComponent<DeadManager>();
+            coll.hitManager = hitM.GetComponent<HitManager>();
 
             if (3 < app && (px < -2 || 2 < px))
             {

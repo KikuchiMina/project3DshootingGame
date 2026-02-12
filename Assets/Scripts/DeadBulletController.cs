@@ -20,5 +20,6 @@ public class DeadBulletController : MonoBehaviour
     public void SetDeadBullet()
     { // ‚±‚±‚É’e‚Ì€–Sˆ—‚ğ‘‚­
         gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

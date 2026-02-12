@@ -19,6 +19,6 @@ public class DeadEnemyController : MonoBehaviour
     // エネミーの死亡時処理
     public void SetDeadEnemy()
     { // ここに敵死亡時処理を書く
-
+        Destroy(gameObject);
     }
 }
